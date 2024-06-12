@@ -1,5 +1,8 @@
-void Multi(int a, int b)
+public class Multi
 {
-    c = a * b;
-    return b;
+    public int Multi(int a, int b)
+    {
+        int c = a * b;
+        return b;
+    }
 }
