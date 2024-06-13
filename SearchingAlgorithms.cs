@@ -106,7 +106,8 @@ public class SearchingAlgorithms
                     LinearSearch();
                     break;
                 default:
-                    Console.WriteLine("Invalid number.");
+                    // Console.WriteLine("Invalid number.");
+                    Display();
                     break;
             }
         }
