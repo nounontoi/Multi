@@ -1,104 +1,61 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlexsTrustyCode
+public class MathematicalOperations
 {
-    public class MathematicalOperations
+    public static void Display()
     {
-        public int Add(int a, int b)
+        Console.Clear();
+        Console.WriteLine("Mathematical Operations");
+        Console.WriteLine("0: Back");
+        string userInput = Console.ReadLine();
+
+        try
         {
-            int c = a + b;
-            return a;
+            int result = Int32.Parse(userInput);
+            switch (result)
+            {
+                case 0:
+                    Console.Clear();
+                    Home.HomePage();
+                    break;
+                default:
+                    Console.WriteLine("Invalid number.");
+                    break;
+            }
         }
-
-        public int Subtract(int a, int b)
+        catch (FormatException e)
         {
-            int c = a - b;
-            return a;
-        }
-
-        public int Multiply(int a, int b)
-        {
-            int c = a * b;
-            return a;
-        }
-
-        public int Divide(int a, int b)
-        {
-            int c = a / b;
-            return a;
-        }
-
-        public MathematicalOperations()
-        {
-            Console.WriteLine("Do you trust my code?");
-
-            Algorithms algorithms = new Algorithms();
-
-            algorithms.LinearSearch();
-        }
-
-        public static void Main(string[] args)
-        {
-            MathematicalOperations math = new MathematicalOperations();
+            Console.WriteLine(e.Message);
         }
     }
 
-    public class Algorithms
+    public static int Add(int a, int b)
     {
-        // public int[] MakeNumberArray()
-        // {
-        //     List<int> numberList = new List<int>();
-        //     for (int i = 0; i < 100; i++)
-        //     {
-        //         Random rnd = new Random();
-        //         numberList.Add(rnd.Next(0, 100));
-        //     }
-        //     return numberList.ToArray();
-        // }
+        int c = a + b;
+        return a;
+    }
 
-        public void LinearSearch()
-        {
-            bool foundNumber = false;
-            // MakeNumberArray();
-            List<int> numberList = new List<int>();
-            for (int i = 0; i < 100; i++)
-            {
-                Random rnd = new Random();
-                numberList.Add(rnd.Next(0, 100));
-            }
+    public static int Subtract(int a, int b)
+    {
+        int c = a - b;
+        return a;
+    }
 
-            Console.WriteLine("Input a search query");
-            string searchQuery = Console.ReadLine();
+    public static int Multiply(int a, int b)
+    {
+        int c = a * b;
+        return a;
+    }
 
-            try
-            {
-                int result = Int32.Parse(searchQuery);
-                // Console.WriteLine(numVal);
-                for (int i = 0; i < numberList.Count; i++)
-                {
-                    if (numberList[i] == result)
-                    {
-                        foundNumber = true;
-                    }
-                }
+    public static int Divide(int a, int b)
+    {
+        int c = a / b;
+        return a;
+    }
 
-                Random rnd = new Random();
-                int index = rnd.Next(0, numberList.Count);
-                int value = numberList[index];
-
-                Console.WriteLine("The value " + value + " exists at index " + index + ".");
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            Console.WriteLine("Input anything to continue, or enter to quit.");
-            string cont = Console.ReadLine();
-            if (cont != string.Empty)
-            {
-                LinearSearch();
-            }
-        }
+    public static int Pythagoras(int a, int b, int c)
+    {
+        return a;
     }
 }
