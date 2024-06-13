@@ -12,6 +12,11 @@ public class MathematicalOperations
 
         try
         {
+            if (userInput == string.Empty)
+            {
+                Display();
+            }
+            
             int result = Int32.Parse(userInput);
             switch (result)
             {

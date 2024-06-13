@@ -13,6 +13,11 @@ public class SearchingAlgorithms
 
         try
         {
+            if (userInput == string.Empty)
+            {
+                Display();
+            }
+
             int result = Int32.Parse(userInput);
             switch (result)
             {
@@ -86,6 +91,11 @@ public class SearchingAlgorithms
 
         try
         {
+            if (userInput == string.Empty)
+            {
+                Display();
+            }
+
             int result = Int32.Parse(userInput);
             switch (result)
             {
