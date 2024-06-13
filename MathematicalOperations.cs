@@ -16,7 +16,7 @@ public class MathematicalOperations
             {
                 Display();
             }
-            
+
             int result = Int32.Parse(userInput);
             switch (result)
             {
@@ -25,7 +25,8 @@ public class MathematicalOperations
                     Home.HomePage();
                     break;
                 default:
-                    Console.WriteLine("Invalid number.");
+                    // Console.WriteLine("Invalid number.");
+                    Display();
                     break;
             }
         }

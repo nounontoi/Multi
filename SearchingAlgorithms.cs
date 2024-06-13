@@ -29,11 +29,9 @@ public class SearchingAlgorithms
                     Console.Clear();
                     LinearSearch();
                     break;
-                case 2:
-                    // Page2();
-                    break;
                 default:
-                    Console.WriteLine("Invalid page number.");
+                    // Console.WriteLine("Invalid page number.");
+                    Display();
                     break;
             }
         }
