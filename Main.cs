@@ -10,8 +10,8 @@ public class Home
     public static void HomePage()
     {
         Console.WriteLine("0: Quit.");
-        Console.WriteLine("1: Proceed to Mathematical Operations.");
-        Console.WriteLine("2: Proceed to Searching Algorithms.");
+        Console.WriteLine("1: Mathematical Operations.");
+        Console.WriteLine("2: Searching Algorithms.");
 
         Console.WriteLine("Input: ");
         string userInput = Console.ReadLine();
