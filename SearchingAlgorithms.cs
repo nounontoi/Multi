@@ -35,9 +35,9 @@ public class SearchingAlgorithms
                     break;
             }
         }
-        catch (FormatException e)
+        catch
         {
-            Console.WriteLine(e.Message);
+            Display();
         }
     }
 
@@ -77,9 +77,10 @@ public class SearchingAlgorithms
 
             Console.WriteLine("The value " + value + " exists at index " + index + ".");
         }
-        catch (FormatException e)
+        catch
         {
-            Console.WriteLine(e.Message);
+            Console.Clear();
+            LinearSearch();
         }
 
         Console.WriteLine("");
@@ -111,9 +112,9 @@ public class SearchingAlgorithms
                     break;
             }
         }
-        catch (FormatException e)
+        catch
         {
-            Console.WriteLine(e.Message);
+            Display();
         }
     }
 }

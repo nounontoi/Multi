@@ -19,24 +19,26 @@ public class Home
 
     public static void HomePage()
     {
-        Console.WriteLine("0: Quit.");
-        Console.WriteLine("1: Mathematical Operations.");
-        Console.WriteLine("2: Searching Algorithms.");
+        Console.WriteLine("0: Quit");
+        Console.WriteLine("1: Mathematical Operations");
+        Console.WriteLine("2: Searching Algorithms");
 
         Console.WriteLine("Input: ");
         string userInput = Console.ReadLine();
 
-        if (userInput == string.Empty)
-        {
-            HomePage();
-        }
-
         try
         {
+            if (userInput == string.Empty)
+            {
+                Console.Clear();
+                HomePage();
+            }
+
             int result = Int32.Parse(userInput);
             switch (result)
             {
                 case 0:
+                    Environment.Exit(0);
                     break;
                 case 1:
                     Console.Clear();
@@ -53,9 +55,10 @@ public class Home
                     break;
             }
         }
-        catch (FormatException e)
+        catch
         {
-            Console.WriteLine(e.Message);
+            Console.Clear();
+            HomePage();
         }
     }
 }

@@ -30,9 +30,9 @@ public class MathematicalOperations
                     break;
             }
         }
-        catch (FormatException e)
+        catch
         {
-            Console.WriteLine(e.Message);
+            Display();
         }
     }
 
