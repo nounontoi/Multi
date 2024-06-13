@@ -5,6 +5,16 @@ public class Home
     public static void Main(string[] args)
     {
         HomePage();
+        // Startup();
+    }
+
+    public static void Startup()
+    {
+        // Large ASCII art of 'MULTI'
+
+        // Takes two user integer inputs, then returns the second input
+
+        // Takes user to HomePage()
     }
 
     public static void HomePage()
