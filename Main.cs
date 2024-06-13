@@ -4,17 +4,65 @@ public class Home
 {
     public static void Main(string[] args)
     {
-        HomePage();
-        // Startup();
+        // HomePage();
+        Startup();
     }
 
     public static void Startup()
     {
         // Large ASCII art of 'MULTI'
+        string multiASCII = @"
+         __    __   __  __   __       ______  __   
+        /\ \-./  \ /\ \/\ \ /\ \     /\__  _\/\ \  
+        \ \ \-./\ \\ \ \_\ \\ \ \____\/_/\ \/\ \ \ 
+         \ \_\ \ \_\\ \_____\\ \_____\  \ \_\ \ \_\
+          \/_/  \/_/ \/_____/ \/_____/   \/_/  \/_/
+        ";
+        Console.WriteLine(multiASCII);
 
         // Takes two user integer inputs, then returns the second input
+        Console.WriteLine("Multiply:");
+
+        int result1 = 0;
+        int result2 = 0;
+
+        string a = Console.ReadLine();
+        try
+        {
+            if (a == string.Empty)
+            {
+                Console.Clear();
+                Startup();
+            }
+            result1 = Int32.Parse(a);
+        }
+        catch
+        {
+            Console.Clear();
+            Startup();
+        }
+
+        Console.WriteLine("with:");
+        string b = Console.ReadLine();
+        try
+        {
+            if (b == string.Empty)
+            {
+                Console.Clear();
+                Startup();
+            }
+            result2 = Int32.Parse(b);
+        }
+        catch
+        {
+            Console.Clear();
+            Startup();
+        }
+        Console.WriteLine("Answer:" + b);
 
         // Takes user to HomePage()
+        Console.ReadLine();
+        HomePage();
     }
 
     public static void HomePage()
