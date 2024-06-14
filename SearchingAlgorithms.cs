@@ -60,6 +60,8 @@ public class SearchingAlgorithms
         Console.WriteLine("Input a search query");
         string searchQuery = Console.ReadLine();
 
+        if (foundNumber) {}
+
         try
         {
             int result = Int32.Parse(searchQuery);
