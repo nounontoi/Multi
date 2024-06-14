@@ -84,7 +84,7 @@ public class SearchingAlgorithms
         {
             case 0:
                 Console.Clear();
-                SearchingAlgorithms.Display();
+                Display();
                 break;
             case 1:
                 Console.Clear();
