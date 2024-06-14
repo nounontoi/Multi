@@ -9,17 +9,10 @@ public class SearchingAlgorithms
         Console.WriteLine("Searching Algorithms");
         Console.WriteLine("0: Back");
         Console.WriteLine("1: Linear Search");
-        string userInput = Console.ReadLine();
+        // string userInput = Console.ReadLine();
+        int userInput = Home.GetIntInput();
 
-        try
-        {
-            if (userInput == string.Empty)
-            {
-                Display();
-            }
-
-            int result = Int32.Parse(userInput);
-            switch (result)
+        switch (userInput)
             {
                 case 0:
                     Console.Clear();
@@ -34,11 +27,6 @@ public class SearchingAlgorithms
                     Display();
                     break;
             }
-        }
-        catch
-        {
-            Display();
-        }
     }
 
     static int[] RandomNumberArray()
