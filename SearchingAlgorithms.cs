@@ -5,28 +5,26 @@ public class SearchingAlgorithms
 {
     public static void Display()
     {
-        Console.Clear();
         Console.WriteLine("Searching Algorithms");
         Console.WriteLine("0: Back");
         Console.WriteLine("1: Linear Search");
-        // string userInput = Console.ReadLine();
         int userInput = Home.GetIntInput();
 
         switch (userInput)
-            {
-                case 0:
-                    Console.Clear();
-                    Home.HomePage();
-                    break;
-                case 1:
-                    Console.Clear();
-                    LinearSearch();
-                    break;
-                default:
-                    // Console.WriteLine("Invalid page number.");
-                    Display();
-                    break;
-            }
+        {
+            case 0:
+                Console.Clear();
+                Home.HomePage();
+                break;
+            case 1:
+                Console.Clear();
+                LinearSearch();
+                break;
+            default:
+                Console.WriteLine("Invalid number.");
+                Display();
+                break;
+        }
     }
 
     static int[] RandomNumberArray()
@@ -46,16 +44,12 @@ public class SearchingAlgorithms
         int[] rndNumArr = RandomNumberArray();
 
         Console.WriteLine("Input a search query");
-        int searchQuery = Home.GetIntInput();
+        int result = Home.GetIntInput();
 
-        if (foundNumber)
-
-        for (int i = 0; i < rndNumArr.Length; i++)
+        if (result == -1)
         {
-            if (rndNumArr[i] == searchQuery)
-            {
-                foundNumber = true;
-            }
+            Console.Clear();
+            LinearSearch();
         }
         Random rnd = new Random();
         int index = rnd.Next(0, rndNumArr.Length);
@@ -63,25 +57,21 @@ public class SearchingAlgorithms
 
         Console.WriteLine("The value " + value + " exists at index " + index + ".");
 
-        Console.WriteLine("");
-        Console.WriteLine("0: Back");
-        Console.WriteLine("1: Linear Search");
-
-        int userInput = Home.GetIntInput();
-        switch (userInput)
+        for (int i = 0; i < rndNumArr.Length; i++)
         {
-            case 0:
-                Console.Clear();
-                Display();
-                break;
-            case 1:
-                Console.Clear();
-                LinearSearch();
-                break;
-            default:
-                // Console.WriteLine("Invalid number.");
-                Display();
-                break;
+            if (rndNumArr[i] == result)
+            {
+                foundNumber = true;
+            }
         }
+
+        if (foundNumber) { }
+        Random rnd = new Random();
+        int index = rnd.Next(0, rndNumArr.Length);
+        int value = rndNumArr[index];
+
+        Console.WriteLine("The value " + value + " exists at index " + index + ".");
+        Console.WriteLine("");
+        Display();
     }
 }
