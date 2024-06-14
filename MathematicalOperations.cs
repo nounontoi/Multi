@@ -8,31 +8,18 @@ public class MathematicalOperations
         Console.Clear();
         Console.WriteLine("Mathematical Operations");
         Console.WriteLine("0: Back");
-        string userInput = Console.ReadLine();
+        int result = Home.GetIntInput();
 
-        try
+        switch (result)
         {
-            if (userInput == string.Empty)
-            {
+            case 0:
+                Console.Clear();
+                Home.HomePage();
+                break;
+            default:
+                Console.WriteLine("Invalid number.");
                 Display();
-            }
-
-            int result = Int32.Parse(userInput);
-            switch (result)
-            {
-                case 0:
-                    Console.Clear();
-                    Home.HomePage();
-                    break;
-                default:
-                    // Console.WriteLine("Invalid number.");
-                    Display();
-                    break;
-            }
-        }
-        catch
-        {
-            Display();
+                break;
         }
     }
 
