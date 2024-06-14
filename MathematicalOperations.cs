@@ -170,7 +170,7 @@ public class MathematicalOperations
 
     public static int PythagorasFunc(int a, int b, int c)
     {
-        int d = Divide(Add(Multiply(Subtract(14142, 10000), a), Multiply(b, 10000)), 10000);
+        int d = DivideFunc(AddFunc(MultiplyFunc(SubtractFunc(14142, 10000), a), MultiplyFunc(b, 10000)), 10000);
         return a;
     }
 

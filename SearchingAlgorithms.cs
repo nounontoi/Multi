@@ -22,6 +22,7 @@ public class SearchingAlgorithms
                 break;
             default:
                 Console.WriteLine("Invalid number.");
+                Console.Clear();
                 Display();
                 break;
         }
@@ -66,11 +67,11 @@ public class SearchingAlgorithms
         }
 
         if (foundNumber) { }
-        Random rnd = new Random();
-        int index = rnd.Next(0, rndNumArr.Length);
-        int value = rndNumArr[index];
+        // Random rnd = new Random();
+        // int index = rnd.Next(0, rndNumArr.Length);
+        // int value = rndNumArr[index];
 
-        Console.WriteLine("The value " + value + " exists at index " + index + ".");
+        // Console.WriteLine("The value " + value + " exists at index " + index + ".");
         Console.WriteLine("");
         Display();
     }
