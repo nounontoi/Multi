@@ -42,14 +42,14 @@ public class MathematicalOperations
     public static void AddDisplay()
     {
         Console.Clear();
-        Console.Write("Add: ");
+        Console.WriteLine("Add: ");
         int a = Home.GetIntInput();
 
-        Console.Write("with: ");
+        Console.WriteLine("with: ");
         int b = Home.GetIntInput();
 
         int result = AddFunc(a, b);
-        Console.Write("Answer: " + result);
+        Console.WriteLine("Answer: " + result);
 
 
         Console.WriteLine("");
@@ -77,14 +77,14 @@ public class MathematicalOperations
     public static void SubtractDisplay()
     {
         Console.Clear();
-        Console.Write("Subtract: ");
+        Console.WriteLine("Subtract: ");
         int b = Home.GetIntInput();
 
-        Console.Write("from: ");
+        Console.WriteLine("from: ");
         int a = Home.GetIntInput();
 
         int result = SubtractFunc(a, b);
-        Console.Write("Answer: " + result);
+        Console.WriteLine("Answer: " + result);
 
 
         Console.WriteLine("");
@@ -112,14 +112,14 @@ public class MathematicalOperations
     public static void MultiplyDisplay()
     {
         Console.Clear();
-        Console.Write("Multiply: ");
+        Console.WriteLine("Multiply: ");
         int a = Home.GetIntInput();
 
-        Console.Write("with: ");
+        Console.WriteLine("with: ");
         int b = Home.GetIntInput();
 
         int result = MultiplyFunc(a, b);
-        Console.Write("Answer: " + result);
+        Console.WriteLine("Answer: " + result);
 
 
         Console.WriteLine("");
