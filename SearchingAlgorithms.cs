@@ -58,65 +58,42 @@ public class SearchingAlgorithms
         int[] rndNumArr = RandomNumberArray();
 
         Console.WriteLine("Input a search query");
-        string searchQuery = Console.ReadLine();
+        int searchQuery = Home.GetIntInput();
 
-        if (foundNumber) {}
+        if (foundNumber)
 
-        try
+        for (int i = 0; i < rndNumArr.Length; i++)
         {
-            int result = Int32.Parse(searchQuery);
-            for (int i = 0; i < rndNumArr.Length; i++)
+            if (rndNumArr[i] == searchQuery)
             {
-                if (rndNumArr[i] == result)
-                {
-                    foundNumber = true;
-                }
+                foundNumber = true;
             }
-
-            Random rnd = new Random();
-            int index = rnd.Next(0, rndNumArr.Length);
-            int value = rndNumArr[index];
-
-            Console.WriteLine("The value " + value + " exists at index " + index + ".");
         }
-        catch
-        {
-            Console.Clear();
-            LinearSearch();
-        }
+        Random rnd = new Random();
+        int index = rnd.Next(0, rndNumArr.Length);
+        int value = rndNumArr[index];
+
+        Console.WriteLine("The value " + value + " exists at index " + index + ".");
 
         Console.WriteLine("");
         Console.WriteLine("0: Back");
         Console.WriteLine("1: Linear Search");
-        string userInput = Console.ReadLine();
 
-        try
+        int userInput = Home.GetIntInput();
+        switch (userInput)
         {
-            if (userInput == string.Empty)
-            {
+            case 0:
+                Console.Clear();
+                SearchingAlgorithms.Display();
+                break;
+            case 1:
+                Console.Clear();
+                LinearSearch();
+                break;
+            default:
+                // Console.WriteLine("Invalid number.");
                 Display();
-            }
-
-            int result = Int32.Parse(userInput);
-            switch (result)
-            {
-                case 0:
-                    Console.Clear();
-                    SearchingAlgorithms.Display();
-                    break;
-                case 1:
-                    Console.Clear();
-                    LinearSearch();
-                    break;
-                default:
-                    // Console.WriteLine("Invalid number.");
-                    Display();
-                    break;
-            }
-        }
-        catch
-        {
-            Display();
+                break;
         }
     }
 }
