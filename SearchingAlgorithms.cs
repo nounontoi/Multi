@@ -51,6 +51,11 @@ public class SearchingAlgorithms
             Console.Clear();
             LinearSearch();
         }
+        Random rnd = new Random();
+        int index = rnd.Next(0, rndNumArr.Length);
+        int value = rndNumArr[index];
+
+        Console.WriteLine("The value " + value + " exists at index " + index + ".");
 
         for (int i = 0; i < rndNumArr.Length; i++)
         {

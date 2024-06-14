@@ -19,10 +19,10 @@ public class Home
     public static void Startup()
     {
         Console.WriteLine(ASCII);
-        Console.WriteLine("Multiply:");
+        Console.WriteLine("Multiply: ");
         int result1 = GetIntInput();
 
-        Console.WriteLine("with:");
+        Console.WriteLine("with: ");
         int result2 = GetIntInput();
 
         if (result1 == -1 || result2 == -1)
