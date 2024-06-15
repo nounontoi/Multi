@@ -18,7 +18,9 @@ public class Home
 
     public static void Startup()
     {
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(ASCII);
+        Console.ResetColor();
         Console.WriteLine("Multiply: ");
         int result1 = GetIntInput();
 

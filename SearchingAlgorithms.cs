@@ -18,7 +18,7 @@ public class SearchingAlgorithms
                 break;
             case 1:
                 Console.Clear();
-                LinearSearch();
+                LinearSearchDispay();
                 break;
             default:
                 Console.WriteLine("Invalid number.");
@@ -26,6 +26,46 @@ public class SearchingAlgorithms
                 Display();
                 break;
         }
+    }
+
+    public static void LinearSearchDispay()
+    {
+        Console.WriteLine("Input a search query");
+        int input = Home.GetIntInput();
+        if (input == -1)
+        {
+            Console.WriteLine("Invalid input.");
+            LinearSearchDispay();
+            return;
+        }
+
+        int result = LinearSearch(input);
+
+        Random rnd2 = new Random(result); // gives a random seed
+        int value = rnd2.Next(0, 100);
+        Console.WriteLine("The value " + value + " exists at index " + result + ".");
+        Console.WriteLine("");
+        Display();
+    }
+
+    public static int LinearSearch(int result)
+    {
+        bool foundNumber = false;
+        int[] rndNumArr = RandomNumberArray();
+
+        Random rnd = new Random();
+        int index = rnd.Next(0, rndNumArr.Length);
+        int value = rndNumArr[index];
+
+        for (int i = 0; i < rndNumArr.Length; i++)
+        {
+            if (rndNumArr[i] == result && !foundNumber)
+            {
+                foundNumber = true;
+            }
+        }
+
+        return index;
     }
 
     static int[] RandomNumberArray()
@@ -37,38 +77,5 @@ public class SearchingAlgorithms
             numberList.Add(rnd.Next(0, 100));
         }
         return numberList.ToArray();
-    }
-
-    public static void LinearSearch()
-    {
-        bool foundNumber = false;
-        int[] rndNumArr = RandomNumberArray();
-
-        Console.WriteLine("Input a search query");
-        int result = Home.GetIntInput();
-
-        if (result == -1)
-        {
-            Console.Clear();
-            LinearSearch();
-        }
-
-        Random rnd = new Random();
-        int index = rnd.Next(0, rndNumArr.Length);
-        int value = rndNumArr[index];
-
-        Console.WriteLine("The value " + value + " exists at index " + index + ".");
-
-        for (int i = 0; i < rndNumArr.Length; i++)
-        {
-            if (rndNumArr[i] == result)
-            {
-                foundNumber = true;
-            }
-        }
-
-        if (foundNumber) { }
-        Console.WriteLine("");
-        Display();
     }
 }
