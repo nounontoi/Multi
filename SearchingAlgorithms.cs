@@ -8,9 +8,9 @@ public class SearchingAlgorithms
         Console.WriteLine("Searching Algorithms");
         Console.WriteLine("0: Back");
         Console.WriteLine("1: Linear Search");
-        int userInput = Home.GetIntInput();
+        int input = Home.GetMenuInput();
 
-        switch (userInput)
+        switch (input)
         {
             case 0:
                 Console.Clear();
@@ -52,6 +52,7 @@ public class SearchingAlgorithms
             Console.Clear();
             LinearSearch();
         }
+
         Random rnd = new Random();
         int index = rnd.Next(0, rndNumArr.Length);
         int value = rndNumArr[index];
@@ -67,11 +68,6 @@ public class SearchingAlgorithms
         }
 
         if (foundNumber) { }
-        // Random rnd = new Random();
-        // int index = rnd.Next(0, rndNumArr.Length);
-        // int value = rndNumArr[index];
-
-        // Console.WriteLine("The value " + value + " exists at index " + index + ".");
         Console.WriteLine("");
         Display();
     }
