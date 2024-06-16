@@ -6,8 +6,8 @@ public class SearchingAlgorithms
     public static void Display()
     {
         Console.WriteLine("Searching Algorithms");
-        Console.WriteLine("0: Back");
-        Console.WriteLine("1: Linear Search");
+        Console.WriteLine("[0] Back");
+        Console.WriteLine("[1] Linear Search");
         int input = Home.GetMenuInput();
 
         switch (input)

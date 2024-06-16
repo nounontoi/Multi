@@ -19,12 +19,12 @@ public class MathematicalOperations
     public static void Display()
     {
         Console.WriteLine("Mathematical Operations");
-        Console.WriteLine("0: Back");
-        Console.WriteLine("1: Addition");
-        Console.WriteLine("2: Subtracation");
-        Console.WriteLine("3: Multiplication");
-        Console.WriteLine("4: Pythagoras");
-        Console.WriteLine("5: Max");
+        Console.WriteLine("[0] Back");
+        Console.WriteLine("[1] Addition");
+        Console.WriteLine("[2] Subtracation");
+        Console.WriteLine("[3] Multiplication");
+        Console.WriteLine("[4] Pythagoras");
+        Console.WriteLine("[5] Max");
 
         int input = Home.GetMenuInput();
         switch (input)
@@ -103,7 +103,7 @@ public class MathematicalOperations
                 Console.WriteLine("Enter numbers seperated by enter: ");
                 List<int> nums = new List<int>();
                 int term = Home.GetIntInput();
-                while (term != -1)
+                while (term != int.MinValue)
                 {
                     nums.Add(term);
                     term = Home.GetIntInput();
@@ -153,6 +153,7 @@ public class MathematicalOperations
 
     public static int MaxFunc(int[] numArray)
     {
+        if (numArray.Length == 0) return 0;
         int max = 0;
         for (int i = 1; i < numArray.Length; i++)
         {

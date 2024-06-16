@@ -27,7 +27,7 @@ public class Home
         Console.WriteLine("with: ");
         int result2 = GetIntInput();
 
-        if (result1 == -1 || result2 == -1)
+        if (result1 == int.MinValue || result2 == int.MinValue)
         {
             InvalidInput("Invalid input.");
             return;
@@ -40,9 +40,9 @@ public class Home
 
     public static void HomePage()
     {
-        Console.WriteLine("0: Quit");
-        Console.WriteLine("1: Mathematical Operations");
-        Console.WriteLine("2: Searching Algorithms");
+        Console.WriteLine("[0] Quit");
+        Console.WriteLine("[1] Mathematical Operations");
+        Console.WriteLine("[2] Searching Algorithms");
 
         int input = GetMenuInput();
 
@@ -68,8 +68,8 @@ public class Home
     public static int GetIntInput()
     {
         var input = Console.ReadLine();
-        if (input == null) return -1;
-        if (input == string.Empty) return -1;
+        if (input == null) return int.MinValue;
+        if (input == string.Empty) return int.MinValue;
 
         try
         {
@@ -77,7 +77,7 @@ public class Home
         }
         catch
         {
-            return -1;
+            return int.MinValue;
         }
     }
 
@@ -86,7 +86,7 @@ public class Home
         var input = Console.ReadKey();
 
         string key = input.KeyChar.ToString();
-        if (key == string.Empty) return -1;
+        if (key == string.Empty) return int.MinValue;
 
         try
         {
@@ -94,7 +94,7 @@ public class Home
         }
         catch
         {
-            return -1;
+            return int.MinValue;
         }
     }
 
