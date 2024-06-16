@@ -2,146 +2,123 @@ using System;
 using System.Collections.Generic;
 using System.Xml.XPath;
 
+// group of all possible options in menu
+public enum Operations
+{
+    Add,
+    Subtract,
+    Multiply,
+    Pythagoras,
+    Max,
+    Back,
+    Error
+}
+
 public class MathematicalOperations
 {
     public static void Display()
     {
-        Console.Clear();
         Console.WriteLine("Mathematical Operations");
         Console.WriteLine("0: Back");
         Console.WriteLine("1: Addition");
         Console.WriteLine("2: Subtracation");
         Console.WriteLine("3: Multiplication");
-        int result = Home.GetIntInput();
+        Console.WriteLine("4: Pythagoras");
+        Console.WriteLine("5: Max");
 
-        switch (result)
+        int input = Home.GetMenuInput();
+        switch (input)
         {
             case 0:
-                Console.Clear();
-                Home.HomePage();
+                OperationDisplay(Operations.Back);
                 break;
             case 1:
-                Console.Clear();
-                AddDisplay();
+                OperationDisplay(Operations.Add);
                 break;
             case 2:
-                Console.Clear();
-                SubtractDisplay();
+                OperationDisplay(Operations.Subtract);
                 break;
             case 3:
-                Console.Clear();
-                MultiplyDisplay();
+                OperationDisplay(Operations.Multiply);
+                break;
+            case 4:
+                OperationDisplay(Operations.Pythagoras);
+                break;
+            case 5:
+                OperationDisplay(Operations.Max);
                 break;
             default:
-                Console.WriteLine("Invalid number.");
-                Display();
+                OperationDisplay(Operations.Error);
                 break;
         }
+
     }
 
-    public static void AddDisplay()
+    public static void OperationDisplay(Operations type)
     {
-        Console.Clear();
-        Console.WriteLine("Add: ");
-        int a = Home.GetIntInput();
-
-        Console.WriteLine("with: ");
-        int b = Home.GetIntInput();
-
-        int result = AddFunc(a, b);
-        Console.WriteLine("Answer: " + result);
-
-
-        Console.WriteLine("");
-        Console.WriteLine("0: Back");
-        Console.WriteLine("1: Addition");
-
-        int userInput = Home.GetIntInput();
-        switch (userInput)
+        // selected back
+        if (type == Operations.Back)
         {
-            case 0:
-                Console.Clear();
-                Display();
+            Console.Clear();
+            Home.HomePage();
+            return;
+        }
+
+        // invalid input
+        if (type == Operations.Error)
+        {
+            Console.Clear();
+            Console.WriteLine("Invalid input");
+            Display();
+            return;
+        }
+
+        Console.WriteLine("\n");
+        int result = 0;
+        
+        // selected operation
+        switch (type)
+        {
+            case Operations.Add:
+            case Operations.Subtract:
+            case Operations.Multiply:
+                Console.WriteLine(type.ToString() + ": ");
+                int a = Home.GetIntInput();
+                Console.WriteLine("with: ");
+                int b = Home.GetIntInput();
+                if (type == Operations.Add) result = AddFunc(a, b);
+                if (type == Operations.Subtract) result = SubtractFunc(a, b);
+                if (type == Operations.Multiply) result = MultiplyFunc(a, b);
                 break;
-            case 1:
-                Console.Clear();
-                AddDisplay();
+            case Operations.Pythagoras:
+                Console.WriteLine("Side a: ");
+                a = Home.GetIntInput();
+                Console.WriteLine("Side b: ");
+                b = Home.GetIntInput();
+                Console.WriteLine("Side c: ");
+                int c = Home.GetIntInput();
+                result = PythagorasFunc(a, b, c);
                 break;
-            default:
-                // Console.WriteLine("Invalid number.");
-                Display();
+            case Operations.Max:
+                Console.WriteLine("Enter numbers seperated by enter: ");
+                List<int> nums = new List<int>();
+                int term = Home.GetIntInput();
+                while (term != -1)
+                {
+                    nums.Add(term);
+                    term = Home.GetIntInput();
+                }
+
+                int[] d = nums.ToArray();
+                // Console.WriteLine(string.Join(" ", d));
+                result = MaxFunc(d);
                 break;
         }
-    }
 
-    public static void SubtractDisplay()
-    {
-        Console.Clear();
-        Console.WriteLine("Subtract: ");
-        int b = Home.GetIntInput();
-
-        Console.WriteLine("from: ");
-        int a = Home.GetIntInput();
-
-        int result = SubtractFunc(a, b);
+        // print result
         Console.WriteLine("Answer: " + result);
-
-
         Console.WriteLine("");
-        Console.WriteLine("0: Back");
-        Console.WriteLine("1: Subtraction");
-
-        int userInput = Home.GetIntInput();
-        switch (userInput)
-        {
-            case 0:
-                Console.Clear();
-                Display();
-                break;
-            case 1:
-                Console.Clear();
-                SubtractDisplay();
-                break;
-            default:
-                // Console.WriteLine("Invalid number.");
-                Display();
-                break;
-        }
-    }
-
-    public static void MultiplyDisplay()
-    {
-        Console.Clear();
-        Console.WriteLine("Multiply: ");
-        int a = Home.GetIntInput();
-
-        Console.WriteLine("with: ");
-        int b = Home.GetIntInput();
-
-        int result = MultiplyFunc(a, b);
-        Console.WriteLine("Answer: " + result);
-
-
-        Console.WriteLine("");
-        Console.WriteLine("0: Back");
-        Console.WriteLine("1: Multiply");
-
-        int userInput = Home.GetIntInput();
-        switch (userInput)
-        {
-            case 0:
-                Console.Clear();
-                Display();
-                break;
-            case 1:
-                Console.Clear();
-                MultiplyDisplay();
-                break;
-            default:
-                // Console.WriteLine("Invalid number.");
-                Display();
-                break;
-        }
+        Display();
     }
 
     public static int AddFunc(int a, int b)
@@ -177,13 +154,13 @@ public class MathematicalOperations
     public static int MaxFunc(int[] numArray)
     {
         int max = 0;
-        for (int i = 0; i < numArray.Length; i++)
+        for (int i = 1; i < numArray.Length; i++)
         {
-            if (numArray[i + 1] > numArray[i])
+            if (numArray[i] > max)
             {
-                max = numArray[i + 1];
+                max = numArray[i];
             }
         }
-        return max;
+        return numArray[0];
     }
 }

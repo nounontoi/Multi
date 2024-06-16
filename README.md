@@ -6,4 +6,7 @@ Do you trust my code? (Don't worry, it's not a virus. It's just *incredibly* use
 ***
 
 Compile command  
-`csc /out:Multi.exe *.cs`
+
+> you need to set csc as a path variable
+
+`.\compile`

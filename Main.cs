@@ -18,7 +18,9 @@ public class Home
 
     public static void Startup()
     {
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(ASCII);
+        Console.ResetColor();
         Console.WriteLine("Multiply: ");
         int result1 = GetIntInput();
 
@@ -42,10 +44,9 @@ public class Home
         Console.WriteLine("1: Mathematical Operations");
         Console.WriteLine("2: Searching Algorithms");
 
-        Console.WriteLine("Input: ");
-        int result = GetIntInput();
+        int input = GetMenuInput();
 
-        switch (result)
+        switch (input)
         {
             case 0:
                 Environment.Exit(0);
@@ -73,6 +74,23 @@ public class Home
         try
         {
             return int.Parse(input);
+        }
+        catch
+        {
+            return -1;
+        }
+    }
+
+    public static int GetMenuInput()
+    {
+        var input = Console.ReadKey();
+
+        string key = input.KeyChar.ToString();
+        if (key == string.Empty) return -1;
+
+        try
+        {
+            return int.Parse(key);
         }
         catch
         {
