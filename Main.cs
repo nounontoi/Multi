@@ -119,17 +119,10 @@ public class Home
         try
         {
             Console.SetCursorPosition(xCoord, yCoord);
-            if (colour == "")
-            {
-                Console.Write(line);
-            }
-            else
-            {
-                ConsoleColor consoleColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colour, true);
-                Console.ForegroundColor = consoleColour;
-                Console.WriteLine(line);
-                Console.ResetColor();
-            }
+            ConsoleColor consoleColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colour, true);
+            Console.ForegroundColor = consoleColour;
+            Console.WriteLine(line);
+            Console.ResetColor();
         }
         catch (ArgumentOutOfRangeException e)
         {
