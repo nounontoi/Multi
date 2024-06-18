@@ -44,9 +44,7 @@ public class Home
 
     public static void HomePage()
     {
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        WriteAt("Home", 0, 0);
-        Console.ResetColor();
+        WriteAt("Home", 0, 0, "Cyan");
         WriteAt("[0] Quit", 0, 1);
         WriteAt("[1] Mathematical Operations", 0, 2);
         WriteAt("[2] Searching Algorithms", 0, 3);
