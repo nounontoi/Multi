@@ -18,15 +18,15 @@ public class MathematicalOperations
 {
     public static void Display()
     {
-        Console.WriteLine("Mathematical Operations");
-        Console.WriteLine("[0] Back");
-        Console.WriteLine("[1] Addition");
-        Console.WriteLine("[2] Subtracation");
-        Console.WriteLine("[3] Multiplication");
-        Console.WriteLine("[4] Pythagoras");
-        Console.WriteLine("[5] Max");
+        Home.WriteAt("Mathematical Operations", Home.startCol2, 0, "Cyan");
+        Home.WriteAt("[0] Back", Home.startCol2, 1);
+        Home.WriteAt("[1] Addition", Home.startCol2, 2);
+        Home.WriteAt("[2] Subtracation", Home.startCol2, 3);
+        Home.WriteAt("[3] Multiplication", Home.startCol2, 4);
+        Home.WriteAt("[4] Pythagoras", Home.startCol2, 5);
+        Home.WriteAt("[5] Max", Home.startCol2, 6);
 
-        int input = Home.GetMenuInput();
+        int input = Home.GetMenuInput(Home.startCol2);
         switch (input)
         {
             case 0:
@@ -59,7 +59,7 @@ public class MathematicalOperations
         // selected back
         if (type == Operations.Back)
         {
-            Console.Clear();
+            Home.ClosePage(Home.startCol2);
             Home.HomePage();
             return;
         }
@@ -67,13 +67,13 @@ public class MathematicalOperations
         // invalid input
         if (type == Operations.Error)
         {
-            Console.Clear();
+            Home.ClosePage(Home.startCol2);
             Console.WriteLine("Invalid input");
             Display();
             return;
         }
 
-        Console.WriteLine("\n");
+        // Console.WriteLine("\n");
         int result = 0;
         
         // selected operation
@@ -82,25 +82,25 @@ public class MathematicalOperations
             case Operations.Add:
             case Operations.Subtract:
             case Operations.Multiply:
-                Console.WriteLine(type.ToString() + ": ");
+                Home.WriteAt(type.ToString() + ": ", Home.startCol3, 1);
                 int a = Home.GetIntInput();
-                Console.WriteLine("with: ");
+                Home.WriteAt("with: ", Home.startCol3, 3);
                 int b = Home.GetIntInput();
                 if (type == Operations.Add) result = AddFunc(a, b);
                 if (type == Operations.Subtract) result = SubtractFunc(a, b);
                 if (type == Operations.Multiply) result = MultiplyFunc(a, b);
                 break;
             case Operations.Pythagoras:
-                Console.WriteLine("Side a: ");
+                Home.WriteAt("Side a: ", Home.startCol3, 1);
                 a = Home.GetIntInput();
-                Console.WriteLine("Side b: ");
+                Home.WriteAt("Side b: ", Home.startCol3, 3);
                 b = Home.GetIntInput();
-                Console.WriteLine("Side c: ");
+                Home.WriteAt("Side c: ", Home.startCol3, 5);
                 int c = Home.GetIntInput();
                 result = PythagorasFunc(a, b, c);
                 break;
             case Operations.Max:
-                Console.WriteLine("Enter numbers seperated by enter: ");
+                Home.WriteAt("Enter numbers seperated by enter: ", Home.startCol3, 1);
                 List<int> nums = new List<int>();
                 int term = Home.GetIntInput();
                 while (term != int.MinValue)
@@ -110,7 +110,6 @@ public class MathematicalOperations
                 }
 
                 int[] d = nums.ToArray();
-                // Console.WriteLine(string.Join(" ", d));
                 result = MaxFunc(d);
                 break;
         }

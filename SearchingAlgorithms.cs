@@ -5,23 +5,23 @@ public class SearchingAlgorithms
 {
     public static void Display()
     {
-        Console.WriteLine("Searching Algorithms");
-        Console.WriteLine("[0] Back");
-        Console.WriteLine("[1] Linear Search");
-        int input = Home.GetMenuInput();
+        Home.WriteAt("Searching Algorithms", Home.startCol2, 0, "DarkYellow");
+        Home.WriteAt("[0] Back", Home.startCol2, 1);
+        Home.WriteAt("[1] Linear Search", Home.startCol2, 2);
+        int input = Home.GetMenuInput(Home.startCol2);
 
         switch (input)
         {
             case 0:
-                Console.Clear();
+                Home.ClosePage(Home.startCol2);
                 Home.HomePage();
                 break;
             case 1:
-                Console.Clear();
                 LinearSearchDispay();
                 break;
             default:
                 Console.WriteLine("Invalid number.");
+                Home.WriteAt("Invalid number.", Home.startCol2, 3);
                 Console.Clear();
                 Display();
                 break;
@@ -30,11 +30,17 @@ public class SearchingAlgorithms
 
     public static void LinearSearchDispay()
     {
-        Console.WriteLine("Input a search query");
+        Home.ClearRow(Home.startCol3, 2);
+        // Home.ClearRow(Home.startCol3, 3);
+        Home.WriteAt("Linear search", Home.startCol3, 0);
+        Home.WriteAt("Input a search query: ", Home.startCol3, 1);
+        Console.SetCursorPosition(Home.startCol3, 2);
         int input = Home.GetIntInput();
-        if (input == -1)
+        if (input == int.MinValue)
         {
-            Console.WriteLine("Invalid input.");
+            Home.ClearRow(Home.startCol3, 2);
+            Home.ClearRow(Home.startCol3, 3);
+            Home.WriteAt("Invalid input.", Home.startCol3, 3);
             LinearSearchDispay();
             return;
         }
@@ -43,8 +49,7 @@ public class SearchingAlgorithms
 
         Random rnd2 = new Random(result); // gives a random seed
         int value = rnd2.Next(0, 100);
-        Console.WriteLine("The value " + value + " exists at index " + result + ".");
-        Console.WriteLine("");
+        Home.WriteAt("The value " + value + " exists at index " + result + ".", Home.startCol3, 3);
         Display();
     }
 
