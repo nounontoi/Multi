@@ -3,47 +3,66 @@ using System.Collections.Generic;
 
 public class SearchingAlgorithms
 {
-    public static void Display()
+    // this variables is all u edit to add a new search algorithm (as well as its displau)
+    private enum Option
     {
-        Home.WriteAt("Searching Algorithms", Home.startCol2, 0, ConsoleColor.DarkYellow);
-        string[] displayLines = new string[] {
-            "[0] Back",
-            "[1] Linear Search"
-        };
-        Home.WriteLines(displayLines, Home.startCol2, 1);
-        int input = Home.GetMenuInput(Home.startCol2);
-
-        switch (input)
-        {
-            case 0:
-                Home.ClosePage(Home.startCol2);
-                Home.HomePage();
-                break;
-            case 1:
-                LinearSearchDispay();
-                break;
-            default:
-                Home.WriteAt("Invalid number.", Home.startCol2, 3);
-                // Console.Clear();
-                Display();
-                break;
-        }
+        Back,
+        LinearSearch,
+        Error = int.MinValue
     }
 
-    public static void LinearSearchDispay()
+    private static string[] displayLines = new string[]
     {
-        Home.ClearRow(Home.startCol3, 2);
-        Home.ClearRow(Home.startCol3, 3);
-        Home.WriteAt("Linear search", Home.startCol3, 0);
-        Home.WriteAt("Input a search query: ", Home.startCol3, 1);
-        Console.SetCursorPosition(Home.startCol3, 2);
-        int input = Home.GetIntInput();
+        "[0] Back",
+        "[1] Linear Search"
+    };
+
+    public static void SearchPage()
+    {
+        Display.WriteAt("Searching Algorithms", Column.Second, 0, ConsoleColor.Cyan);
+        Display.WriteLines(displayLines, Column.Second, 1);
+        int input = Input.GetMenuInput(Column.Second);
+
+        Option algorithm = (Option)input;
+
+        // sets value, error if enum doesnt have it
+        bool hasValue = Enum.IsDefined(typeof(Option), algorithm);
+        if (!hasValue) algorithm = Option.Error;
+
+        SearchDispay(algorithm);
+    }
+
+    private static void SearchDispay(Option option)
+    {
+        if (option == Option.Back)
+        {
+            Display.ClosePage(Column.Second);
+            Home.HomePage();
+            return;
+        }
+
+        if (option == Option.Error)
+        {
+            Display.WriteAt("Invalid number.", Column.Second, 3);
+            SearchPage();
+            return;
+        }
+
+        Display.ClosePage(Column.Third);
+
+        // rn doesnt worry about option, when adding more add checks to each option
+        // custom way to make a row and have it change row by itself
+        LineWriter line = new LineWriter(Column.Third, 0);
+
+        line.Next("Linear search");
+        line.Next("Input a search query: ");
+        int input = line.Get();
+
+        // invalid input
         if (input == int.MinValue)
         {
-            Home.ClearRow(Home.startCol3, 2);
-            Home.ClearRow(Home.startCol3, 3);
-            Home.WriteAt("Invalid input.", Home.startCol3, 3);
-            Display();
+            line.Next("Invalid input.");
+            SearchPage();
             return;
         }
 
@@ -51,8 +70,8 @@ public class SearchingAlgorithms
 
         Random rnd2 = new Random(result); // gives a random seed
         int value = rnd2.Next(0, 100);
-        Home.WriteAt("The value " + value + " exists at index " + result + ".", Home.startCol3, 3);
-        Display();
+        line.Next("The value " + value + " exists at index " + result + ".");
+        SearchPage();
     }
 
     public static int LinearSearch(int result)
