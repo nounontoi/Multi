@@ -45,6 +45,7 @@ public class Home
 
     public static void HomePage()
     {
+        Console.Title = "Multi";
         Display.WriteAt("Home", 0, 0, ConsoleColor.Cyan);
         Display.WriteLines(displayLines, 0, 1);
 

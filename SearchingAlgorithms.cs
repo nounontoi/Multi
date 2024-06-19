@@ -19,6 +19,7 @@ public class SearchingAlgorithms
 
     public static void SearchPage()
     {
+        Console.Title = "Searching Algorithms";
         Display.WriteAt("Searching Algorithms", Column.Second, 0, ConsoleColor.Cyan);
         Display.WriteLines(displayLines, Column.Second, 1);
         int input = Input.GetMenuInput(Column.Second);

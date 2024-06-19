@@ -28,6 +28,7 @@ public class MathematicalOperations
 
     public static void OperationPage()
     {
+        Console.Title = "Mathematical Operations";
         Display.WriteAt("Mathematical Operations", Column.Second, 0, ConsoleColor.Cyan);
         Display.WriteLines(displayLines, Column.Second, 1);
         int input = Input.GetMenuInput(Column.Second);
