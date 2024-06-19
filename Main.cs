@@ -13,13 +13,13 @@ public class Home
 
     public static void Main()
     {
+        Console.SetWindowSize(170, 30);
+        Console.Title = "Multi";
         Startup();
     }
 
     public static void Startup()
     {
-        Console.SetWindowSize(170, 30);
-
         Display.WriteColour(ASCII, ConsoleColor.Green);
         Console.WriteLine("Multiply: ");
         int result1 = Input.GetIntInput();
