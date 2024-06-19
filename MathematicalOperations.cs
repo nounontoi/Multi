@@ -1,138 +1,107 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Runtime.CompilerServices;
-using System.Xml.XPath;
-
-// group of all possible options in menu
-public enum Operations
-{
-    Add,
-    Subtract,
-    Multiply,
-    Pythagoras,
-    Max,
-    Back,
-    Error
-}
 
 public class MathematicalOperations
 {
-    public static void Display()
+    // pretend this is like a map where back = 0, add = 1, etc
+    // this variable is all u need to add a new operation (as well as its display and code)
+    private enum Option
     {
-        Home.WriteAt("Mathematical Operations", Home.startCol2, 0, ConsoleColor.Cyan);
-        string[] displayLines = new string[] {
-            "[0] Back",
-            "[1] Addition",
-            "[2] Subtracation",
-            "[3] Multiplication",
-            "[4] Pythagoras",
-            "[5] Max"
-        };
-        Home.WriteLines(displayLines, Home.startCol2, 1);
-
-        int input = Home.GetMenuInput(Home.startCol2);
-        switch (input)
-        {
-            case 0:
-                OperationDisplay(Operations.Back);
-                break;
-            case 1:
-                OperationDisplay(Operations.Add);
-                break;
-            case 2:
-                OperationDisplay(Operations.Subtract);
-                break;
-            case 3:
-                OperationDisplay(Operations.Multiply);
-                break;
-            case 4:
-                OperationDisplay(Operations.Pythagoras);
-                break;
-            case 5:
-                OperationDisplay(Operations.Max);
-                break;
-            default:
-                OperationDisplay(Operations.Error);
-                break;
-        }
-
+        Back,
+        Add,
+        Subtract,
+        Multiply,
+        Pythagoras,
+        Max,
+        Error = int.MinValue
     }
 
-    public static void OperationDisplay(Operations type)
+    private static string[] displayLines = new string[] {
+        "[0] Back",
+        "[1] Addition",
+        "[2] Subtracation",
+        "[3] Multiplication",
+        "[4] Pythagoras",
+        "[5] Max"
+    };
+
+    public static void OperationPage()
     {
-        // selected back
-        if (type == Operations.Back)
+        Display.WriteAt("Mathematical Operations", Column.Second, 0, ConsoleColor.Cyan);
+        Display.WriteLines(displayLines, Column.Second, 1);
+        int input = Input.GetMenuInput(Column.Second);
+
+        Option operation = (Option)input;
+
+        // sets value, error if enum doesnt have it
+        bool hasValue = Enum.IsDefined(typeof(Option), operation);
+        if (!hasValue) operation = Option.Error;
+
+        OperationDisplay(operation);
+    }
+
+    private static void OperationDisplay(Option type)
+    {
+        if (type == Option.Back)
         {
-            Home.ClosePage(Home.startCol2);
+            Display.ClosePage(Column.Second);
             Home.HomePage();
             return;
         }
 
-        // invalid input
-        if (type == Operations.Error)
+        if (type == Option.Error)
         {
-            Home.WriteAt("Invalid number.", Home.startCol2, 8);
-            Display();
+            Display.WriteAt("Invalid number.", Column.Second, 8);
+            OperationPage();
             return;
         }
 
-        // Console.WriteLine("\n");
         int result = 0;
-        int row = 1;
 
-        Home.ClosePage(Home.startCol3);
-        Home.ClearRow(Home.startCol2, 8);
+        // custom way to make a row and have it change row by itself
+        LineWriter line = new LineWriter(Column.Third);
+        Display.ClosePage(Column.Third);
 
         // selected operation
         switch (type)
         {
-            case Operations.Add:
-            case Operations.Subtract:
-            case Operations.Multiply:
-                Home.WriteAt(type.ToString() + ": ", Home.startCol3, row++);
-                Console.SetCursorPosition(Home.startCol3, row++);
-                int a = Home.GetIntInput();
-                Home.WriteAt("with: ", Home.startCol3, row++);
-                Console.SetCursorPosition(Home.startCol3, row++);
-                int b = Home.GetIntInput();
-                if (type == Operations.Add) result = AddFunc(a, b);
-                if (type == Operations.Subtract) result = SubtractFunc(a, b);
-                if (type == Operations.Multiply) result = MultiplyFunc(a, b);
+            case Option.Add:
+            case Option.Subtract:
+            case Option.Multiply:
+                line.Next(type.ToString() + ": ");
+                int a = line.Get();
+                line.Next("with: ");
+                int b = line.Get();
+                if (type == Option.Add) result = AddFunc(a, b);
+                if (type == Option.Subtract) result = SubtractFunc(a, b);
+                if (type == Option.Multiply) result = MultiplyFunc(a, b);
                 break;
-            case Operations.Pythagoras:
-                Home.WriteAt("Side a: ", Home.startCol3, row);
-                Console.SetCursorPosition(Home.startCol3, row++);
-                a = Home.GetIntInput();
-                Home.WriteAt("Side b: ", Home.startCol3, row++);
-                Console.SetCursorPosition(Home.startCol3, row++);
-                b = Home.GetIntInput();
-                Home.WriteAt("Side c: ", Home.startCol3, row++);
-                Console.SetCursorPosition(Home.startCol3, row++);
-                int c = Home.GetIntInput();
+            case Option.Pythagoras:
+                line.Next("Side a: ");
+                a = line.Get();
+                line.Next("Side b: ");
+                b = line.Get();
+                line.Next("Side c: ");
+                int c = line.Get();
                 result = PythagorasFunc(a, b, c);
                 break;
-            case Operations.Max:
-                Home.WriteAt("Enter numbers seperated by enter: ", Home.startCol3, row++);
+            case Option.Max:
+                line.Next("Enter numbers seperated by enter: ");
                 List<int> nums = new List<int>();
-                Console.SetCursorPosition(Home.startCol3, row++);
-                int term = Home.GetIntInput();
+                int term = line.Get();
                 while (term != int.MinValue)
                 {
                     nums.Add(term);
-                    Console.SetCursorPosition(Home.startCol3, row++);
-                    // row++;
-                    term = Home.GetIntInput();
+                    term = line.Get();
                 }
-
                 int[] d = nums.ToArray();
                 result = MaxFunc(d);
                 break;
         }
 
-        // print result
-        Home.WriteAt("Answer: " + result, Home.startCol3, row);
-        Display();
+        line.Next("Answer: " + result);
+        OperationPage();
     }
 
     public static int AddFunc(int a, int b)

@@ -1,6 +1,4 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.VisualBasic;
 
 public class Home
 {
@@ -22,19 +20,16 @@ public class Home
     {
         Console.SetWindowSize(170, 30);
 
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine(ASCII);
-        Console.ResetColor();
+        Display.WriteColour(ASCII, ConsoleColor.Green);
         Console.WriteLine("Multiply: ");
-        int result1 = GetIntInput();
+        int result1 = Input.GetIntInput();
 
         Console.WriteLine("with: ");
-        int result2 = GetIntInput();
+        int result2 = Input.GetIntInput();
 
         if (result1 == int.MinValue || result2 == int.MinValue)
         {
-            InvalidInput("Invalid input.");
-            return;
+            Console.WriteLine("Invalid input.");
         }
         Console.Clear();
 
@@ -42,17 +37,18 @@ public class Home
         HomePage();
     }
 
+    private static string[] displayLines = new string[] {
+        "[0] Quit",
+        "[1] Mathematical Operations",
+        "[2] Searching Algorithms"
+    };
+
     public static void HomePage()
     {
-        WriteAt("Home", 0, 0, ConsoleColor.Cyan);
-        string[] displayLines = new string[] {
-            "[0] Quit",
-            "[1] Mathematical Operations",
-            "[2] Searching Algorithms"
-        };
-        WriteLines(displayLines, 0, 1);
+        Display.WriteAt("Home", 0, 0, ConsoleColor.Cyan);
+        Display.WriteLines(displayLines, 0, 1);
 
-        int input = GetMenuInput();
+        int input = Input.GetMenuInput();
 
         switch (input)
         {
@@ -60,19 +56,22 @@ public class Home
                 Environment.Exit(0);
                 break;
             case 1:
-                // Console.Clear();
-                MathematicalOperations.Display();
+                MathematicalOperations.OperationPage();
                 break;
             case 2:
-                // Console.Clear();
-                SearchingAlgorithms.Display();
+                SearchingAlgorithms.SearchPage();
                 break;
             default:
-                InvalidInput("Invalid number.");
+                Console.WriteLine("Invalid number.");
+                HomePage();
                 break;
         }
     }
+}
 
+// Probably should put thiese in a different file or something
+public class Input
+{
     public static int GetIntInput()
     {
         var input = Console.ReadLine();
@@ -89,8 +88,15 @@ public class Home
         }
     }
 
-    public static int GetMenuInput(int colNum = 0)
+    public static int GetInputWithPos(Column column, int top)
     {
+        Console.SetCursorPosition(Display.ColToCoord(column), top);
+        return GetIntInput();
+    }
+
+    public static int GetMenuInput(Column column = Column.First)
+    {
+        int colNum = Display.ColToCoord(column);
         Console.SetCursorPosition(colNum, 10);
         var input = Console.ReadKey(true);
 
@@ -106,27 +112,27 @@ public class Home
             return int.MinValue;
         }
     }
+}
 
-    public static void InvalidInput(string text)
+public class Display
+{
+    public static void WriteAt(string line, Column column, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
     {
-        Console.Clear();
-        Console.WriteLine(text);
-        HomePage();
+        int xCoord = ColToCoord(column);
+        Console.SetCursorPosition(xCoord, yCoord);
+        WriteColour(line, colour);
     }
 
-    public static int startCol2 = 40;
-    public static int startCol3 = 80;
-
-    public static void WriteAt(string line, int xCoord, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
+    public static void WriteColour(string text, ConsoleColor colour)
     {
-        Console.SetCursorPosition(xCoord, yCoord);
         Console.ForegroundColor = colour;
-        Console.WriteLine(line);
+        Console.WriteLine(text);
         Console.ResetColor();
     }
 
-    public static void WriteLines(string[] lines, int xCoord, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
+    public static void WriteLines(string[] lines, Column column, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
     {
+        int xCoord = ColToCoord(column);
         Console.ForegroundColor = colour;
         foreach (string line in lines)
         {
@@ -137,15 +143,18 @@ public class Home
         Console.ResetColor();
     }
 
-    public static void ClosePage(int column)
+    public static void ClosePage(Column column)
     {
-        for (int row = 0; row < 20; row++)
+        for (int row = 0; row < 20; row++) // clears up to 20 rows, maybe better to clear whole screen column
         {
-            for (int col = column; col < column + 80; col++)
-            {
-                WriteAt(" ", col, row);
-            }
+            // instead of looping through each col, just found how many spaces to fill and filled them all - faster
+            int remainingSpace = Console.WindowWidth - ColToCoord(column);
+            string EmptySpace = new string(' ', remainingSpace);
+            WriteAt(EmptySpace, column, row);
         }
+
+        // idk what this does so i left it
+
         // Console.Clear();
         // HomePage();
         // switch (className)
@@ -162,13 +171,64 @@ public class Home
         // }
     }
 
-    public static void ClearRow(int left, int row)
+    public static void ClearRow(Column column, int row)
     {
-        for (int col = left; col < left + 50; col++)
-        {
-            WriteAt(" ", col, row);
-        }
-
+        string EmptySpace = new string(' ', 50);
+        WriteAt(EmptySpace, column, row);
     }
 
+    // convert column to x coord
+    public static int ColToCoord(Column column)
+    {
+        switch (column)
+        {
+            case Column.First:
+                return 0;
+            case Column.Second:
+                return 40;
+            case Column.Third:
+                return 80;
+            default:
+                return 0;
+        }
+    }
+}
+
+// this is basically a way to store a variable with a bunch of functions attached to directly modify it
+// this will some explaining to do sorry
+public class LineWriter
+{
+    public int row;
+    public Column column;
+
+    public LineWriter(Column column, int StartRow = 1)
+    {
+        this.row = StartRow;
+        this.column = column;
+    }
+
+    /// <summary>
+    /// Write text then enter next line
+    /// </summary>
+    public void Next(string line)
+    {
+        Display.WriteAt(line, column, row);
+        row++;
+    }
+
+    /// <summary>
+    /// Get an input from user using GetInput() method
+    /// </summary>
+    public int Get()
+    {
+        row++;
+        return Input.GetInputWithPos(column, row - 1);
+    }
+}
+
+public enum Column
+{
+    First,
+    Second,
+    Third
 }
