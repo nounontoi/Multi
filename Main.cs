@@ -44,10 +44,13 @@ public class Home
 
     public static void HomePage()
     {
-        WriteAt("Home", 0, 0, "Cyan");
-        WriteAt("[0] Quit", 0, 1);
-        WriteAt("[1] Mathematical Operations", 0, 2);
-        WriteAt("[2] Searching Algorithms", 0, 3);
+        WriteAt("Home", 0, 0, ConsoleColor.Cyan);
+        string[] displayLines = new string[] {
+            "[0] Quit",
+            "[1] Mathematical Operations",
+            "[2] Searching Algorithms"
+        };
+        WriteLines(displayLines, 0, 1);
 
         int input = GetMenuInput();
 
@@ -114,32 +117,49 @@ public class Home
     public static int startCol2 = 40;
     public static int startCol3 = 80;
 
-    public static void WriteAt(string line, int xCoord, int yCoord, string colour = "Gray")
+    public static void WriteAt(string line, int xCoord, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
     {
-        try
+        Console.SetCursorPosition(xCoord, yCoord);
+        Console.ForegroundColor = colour;
+        Console.WriteLine(line);
+        Console.ResetColor();
+    }
+
+    public static void WriteLines(string[] lines, int xCoord, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
+    {
+        Console.ForegroundColor = colour;
+        foreach (string line in lines)
         {
             Console.SetCursorPosition(xCoord, yCoord);
-            ConsoleColor consoleColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colour, true);
-            Console.ForegroundColor = consoleColour;
             Console.WriteLine(line);
-            Console.ResetColor();
+            yCoord++;
         }
-        catch (ArgumentOutOfRangeException e)
-        {
-            Console.Clear();
-            Console.WriteLine(e.Message);
-        }
+        Console.ResetColor();
     }
 
     public static void ClosePage(int column)
     {
-        for (int row = 0; row < 10; row++)
+        for (int row = 0; row < 20; row++)
         {
             for (int col = column; col < column + 80; col++)
             {
                 WriteAt(" ", col, row);
             }
         }
+        // Console.Clear();
+        // HomePage();
+        // switch (className)
+        // {
+        //     case "MathematicalOperations":
+        //         MathematicalOperations.Display();
+        //         break;
+        //     case "SearchingAlgorithms":
+        //         SearchingAlgorithms.Display();
+        //         break;
+        //     default:
+        //         HomePage();
+        //         break;
+        // }
     }
 
     public static void ClearRow(int left, int row)

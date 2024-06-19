@@ -5,9 +5,12 @@ public class SearchingAlgorithms
 {
     public static void Display()
     {
-        Home.WriteAt("Searching Algorithms", Home.startCol2, 0, "DarkYellow");
-        Home.WriteAt("[0] Back", Home.startCol2, 1);
-        Home.WriteAt("[1] Linear Search", Home.startCol2, 2);
+        Home.WriteAt("Searching Algorithms", Home.startCol2, 0, ConsoleColor.DarkYellow);
+        string[] displayLines = new string[] {
+            "[0] Back",
+            "[1] Linear Search"
+        };
+        Home.WriteLines(displayLines, Home.startCol2, 1);
         int input = Home.GetMenuInput(Home.startCol2);
 
         switch (input)
@@ -20,9 +23,8 @@ public class SearchingAlgorithms
                 LinearSearchDispay();
                 break;
             default:
-                Console.WriteLine("Invalid number.");
                 Home.WriteAt("Invalid number.", Home.startCol2, 3);
-                Console.Clear();
+                // Console.Clear();
                 Display();
                 break;
         }
@@ -31,7 +33,7 @@ public class SearchingAlgorithms
     public static void LinearSearchDispay()
     {
         Home.ClearRow(Home.startCol3, 2);
-        // Home.ClearRow(Home.startCol3, 3);
+        Home.ClearRow(Home.startCol3, 3);
         Home.WriteAt("Linear search", Home.startCol3, 0);
         Home.WriteAt("Input a search query: ", Home.startCol3, 1);
         Console.SetCursorPosition(Home.startCol3, 2);
@@ -41,7 +43,7 @@ public class SearchingAlgorithms
             Home.ClearRow(Home.startCol3, 2);
             Home.ClearRow(Home.startCol3, 3);
             Home.WriteAt("Invalid input.", Home.startCol3, 3);
-            LinearSearchDispay();
+            Display();
             return;
         }
 
