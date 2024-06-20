@@ -1,4 +1,5 @@
 using System;
+using System.Security.Principal;
 
 public class Home
 {
@@ -13,7 +14,7 @@ public class Home
 
     public static void Main()
     {
-        Console.SetWindowSize(170, 30);
+        Console.SetWindowSize(Console.WindowWidth, Console.WindowHeight - 1);
         Console.Title = "Multi";
         Startup();
     }
@@ -25,15 +26,11 @@ public class Home
         int result1 = Input.GetIntInput();
 
         Console.WriteLine("with: ");
-        int result2 = Input.GetIntInput();
+        object result2 = Input.GetIntInput();
+        if ((int)result2 == int.MinValue) result2 = "Invalid input.";
 
-        if (result1 == int.MinValue || result2 == int.MinValue)
-        {
-            Console.WriteLine("Invalid input.");
-        }
         Console.Clear();
-
-        // Console.WriteLine("Answer: " + result2);
+        Display.WriteAt("Answer: " + result2, Column.Second, 0);
         HomePage();
     }
 
@@ -131,72 +128,32 @@ public class Display
         Console.ResetColor();
     }
 
-    public static void WriteLines(string[] lines, Column column, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
+    public static void WriteLines(string[] lines, Column column, int yCoord)
     {
-        int xCoord = ColToCoord(column);
-        Console.ForegroundColor = colour;
+        LineWriter lineWriter = new LineWriter(column, yCoord);
         foreach (string line in lines)
         {
-            Console.SetCursorPosition(xCoord, yCoord);
-            Console.WriteLine(line);
-            yCoord++;
+            lineWriter.Next(line);
         }
-        Console.ResetColor();
     }
 
     public static void ClosePage(Column column)
     {
-        for (int row = 0; row < 20; row++) // clears up to 20 rows, maybe better to clear whole screen column
+        for (int row = 0; row < Console.WindowHeight; row++)
         {
-            // instead of looping through each col, just found how many spaces to fill and filled them all - faster
             int remainingSpace = Console.WindowWidth - ColToCoord(column);
             string EmptySpace = new string(' ', remainingSpace);
             WriteAt(EmptySpace, column, row);
         }
-
-        // idk what this does so i left it
-
-        // Console.Clear();
-        // HomePage();
-        // switch (className)
-        // {
-        //     case "MathematicalOperations":
-        //         MathematicalOperations.Display();
-        //         break;
-        //     case "SearchingAlgorithms":
-        //         SearchingAlgorithms.Display();
-        //         break;
-        //     default:
-        //         HomePage();
-        //         break;
-        // }
     }
 
-    public static void ClearRow(Column column, int row)
-    {
-        string EmptySpace = new string(' ', 50);
-        WriteAt(EmptySpace, column, row);
-    }
-
-    // convert column to x coord
     public static int ColToCoord(Column column)
     {
-        switch (column)
-        {
-            case Column.First:
-                return 0;
-            case Column.Second:
-                return 40;
-            case Column.Third:
-                return 80;
-            default:
-                return 0;
-        }
+        int gap = Console.WindowWidth / 3;
+        return (int)column * gap;
     }
 }
 
-// this is basically a way to store a variable with a bunch of functions attached to directly modify it
-// this will some explaining to do sorry
 public class LineWriter
 {
     public int row;
