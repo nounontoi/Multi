@@ -72,7 +72,9 @@ public class MathematicalOperations
             case Option.Multiply:
                 line.Next(type.ToString() + ": ");
                 int a = line.Get();
-                line.Next("with: ");
+                if (type == Option.Add) line.Next("to: ");
+                if (type == Option.Subtract) line.Next("from: ");
+                if (type == Option.Multiply) line.Next("with: ");
                 int b = line.Get();
                 if (type == Option.Add) result = AddFunc(a, b);
                 if (type == Option.Subtract) result = SubtractFunc(a, b);
