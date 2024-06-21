@@ -4,14 +4,14 @@ using System.Data;
 
 public class MathematicalOperations
 {
-    // pretend this is like a map where back = 0, add = 1, etc
-    // this variable is all u need to add a new operation (as well as its display and code)
+    // this is like a map where back = 0, add = 1, etc
     private enum Option
     {
         Back,
         Add,
         Subtract,
         Multiply,
+        Divide,
         Pythagoras,
         Max,
         Error = int.MinValue
@@ -22,8 +22,9 @@ public class MathematicalOperations
         "[1] Addition",
         "[2] Subtracation",
         "[3] Multiplication",
-        "[4] Pythagoras",
-        "[5] Max"
+        "[4] Division",
+        "[5] Pythagoras",
+        "[6] Max"
     };
 
     public static void OperationPage()
@@ -59,10 +60,9 @@ public class MathematicalOperations
         }
 
         int result = 0;
-
-        // custom way to make a row and have it change row by itself
-        LineWriter line = new LineWriter(Column.Third);
         Display.ClosePage(Column.Third);
+
+        LineWriter line = new LineWriter(Column.Third);
 
         // selected operation
         switch (type)
@@ -70,15 +70,18 @@ public class MathematicalOperations
             case Option.Add:
             case Option.Subtract:
             case Option.Multiply:
+            case Option.Divide:
                 line.Next(type.ToString() + ": ");
                 int a = line.Get();
                 if (type == Option.Add) line.Next("to: ");
                 if (type == Option.Subtract) line.Next("from: ");
                 if (type == Option.Multiply) line.Next("with: ");
+                if (type == Option.Divide) line.Next("by: ");
                 int b = line.Get();
                 if (type == Option.Add) result = AddFunc(a, b);
                 if (type == Option.Subtract) result = SubtractFunc(a, b);
                 if (type == Option.Multiply) result = MultiplyFunc(a, b);
+                if (type == Option.Divide) result = DivideFunc(a, b);
                 break;
             case Option.Pythagoras:
                 line.Next("Side a: ");
