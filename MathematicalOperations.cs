@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 public class MathematicalOperations
 {
@@ -29,6 +28,7 @@ public class MathematicalOperations
 
     public static void OperationPage()
     {
+        Display.ClosePage(Column.Second);
         Console.Title = "Mathematical Operations";
         Display.WriteAt("Mathematical Operations", Column.Second, 0, ConsoleColor.Cyan);
         Display.WriteLines(displayLines, Column.Second, 1);
@@ -48,6 +48,7 @@ public class MathematicalOperations
         if (type == Option.Back)
         {
             Display.ClosePage(Column.Second);
+            Display.ClosePage(Column.Third);
             Home.HomePage();
             return;
         }
@@ -82,6 +83,7 @@ public class MathematicalOperations
                 if (type == Option.Subtract) result = SubtractFunc(a, b);
                 if (type == Option.Multiply) result = MultiplyFunc(a, b);
                 if (type == Option.Divide) result = DivideFunc(a, b);
+                line.Err(() => line.Next("Answer: " + result));
                 break;
             case Option.Pythagoras:
                 line.Next("Side a: ");
@@ -91,22 +93,16 @@ public class MathematicalOperations
                 line.Next("Side c: ");
                 int c = line.Get();
                 result = PythagorasFunc(a, b, c);
+                line.Err(() => line.Next("Answer: " + result));
                 break;
             case Option.Max:
                 line.Next("Enter numbers seperated by enter: ");
-                List<int> nums = new List<int>();
-                int term = line.Get();
-                while (term != int.MinValue)
-                {
-                    nums.Add(term);
-                    term = line.Get();
-                }
-                int[] d = nums.ToArray();
+                int[] d = line.GetList();
                 result = MaxFunc(d);
+                line.Err(() => line.Next("Max value: " + result));
                 break;
         }
 
-        line.Next("Answer: " + result);
         OperationPage();
     }
 

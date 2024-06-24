@@ -8,8 +8,8 @@ public class UnitTests
         int[] test1 = OperationTest();
         OutputResult("Operations test", test1[0], test1[1]);
 
-        int[] test2 = SearchingTest();
-        OutputResult("Searching test", test2[0], test2[1]);
+        int[] test2 = AlgorithmsTest();
+        OutputResult("Algorithms test", test2[0], test2[1]);
     }
 
     private static void OutputResult(string text, int passed, int total)
@@ -45,11 +45,11 @@ public class UnitTests
         return new int[] { tests.Count(c => c), tests.Length };
     }
 
-    public static int[] SearchingTest()
+    public static int[] AlgorithmsTest()
     {
         bool[] tests = new bool[] {
 
-            SearchingAlgorithms.LinearSearch(1) == 1,
+            Algorithms.LinearSearch(1) == 1,
 
         };
 

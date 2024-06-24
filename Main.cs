@@ -1,5 +1,4 @@
 using System;
-using System.Security.Principal;
 
 public class Home
 {
@@ -37,7 +36,7 @@ public class Home
     private static string[] displayLines = new string[] {
         "[0] Quit",
         "[1] Mathematical Operations",
-        "[2] Searching Algorithms"
+        "[2] Algorithms"
     };
 
     public static void HomePage()
@@ -57,7 +56,7 @@ public class Home
                 MathematicalOperations.OperationPage();
                 break;
             case 2:
-                SearchingAlgorithms.SearchPage();
+                Algorithms.SearchPage();
                 break;
             default:
                 Console.WriteLine("Invalid number.");
@@ -67,7 +66,6 @@ public class Home
     }
 }
 
-// Probably should put thiese in a different file or something
 public class Input
 {
     public static int GetIntInput()
@@ -110,83 +108,4 @@ public class Input
             return int.MinValue;
         }
     }
-}
-
-public class Display
-{
-    public static void WriteAt(string line, Column column, int yCoord, ConsoleColor colour = ConsoleColor.Gray)
-    {
-        int xCoord = ColToCoord(column);
-        Console.SetCursorPosition(xCoord, yCoord);
-        WriteColour(line, colour);
-    }
-
-    public static void WriteColour(string text, ConsoleColor colour)
-    {
-        Console.ForegroundColor = colour;
-        Console.WriteLine(text);
-        Console.ResetColor();
-    }
-
-    public static void WriteLines(string[] lines, Column column, int yCoord)
-    {
-        LineWriter lineWriter = new LineWriter(column, yCoord);
-        foreach (string line in lines)
-        {
-            lineWriter.Next(line);
-        }
-    }
-
-    public static void ClosePage(Column column)
-    {
-        for (int row = 0; row < Console.WindowHeight; row++)
-        {
-            int remainingSpace = Console.WindowWidth - ColToCoord(column);
-            string EmptySpace = new string(' ', remainingSpace);
-            WriteAt(EmptySpace, column, row);
-        }
-    }
-
-    public static int ColToCoord(Column column)
-    {
-        int gap = Console.WindowWidth / 3;
-        return (int)column * gap;
-    }
-}
-
-public class LineWriter
-{
-    public int row;
-    public Column column;
-
-    public LineWriter(Column column, int StartRow = 1)
-    {
-        this.row = StartRow;
-        this.column = column;
-    }
-
-    /// <summary>
-    /// Write text then enter next line
-    /// </summary>
-    public void Next(string line)
-    {
-        Display.WriteAt(line, column, row);
-        row++;
-    }
-
-    /// <summary>
-    /// Get an input from user using GetInput() method
-    /// </summary>
-    public int Get()
-    {
-        row++;
-        return Input.GetInputWithPos(column, row - 1);
-    }
-}
-
-public enum Column
-{
-    First,
-    Second,
-    Third
 }
