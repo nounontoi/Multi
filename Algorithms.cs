@@ -14,6 +14,7 @@ public class Algorithms
         SortingFastest,
         LinearSort,
         BMI,
+        TaxCalc,
         Error = int.MinValue
     }
 
@@ -24,6 +25,7 @@ public class Algorithms
         "[2] O(1) Sorting Algorithm",
         "[3] Linear sort",
         "[4] BMI Calculator",
+        "[5] Tax Calculator"
 
     };
 
@@ -101,6 +103,11 @@ public class Algorithms
                 line.Next("Enter weight: ");
                 int weight = line.Get();
                 line.Err(() => line.Next("Your status: " + BMIcalculator(height, weight)));
+                break;
+            case Option.TaxCalc:
+                line.Next("Enter income: ");
+                int income = line.Get();
+                line.Err(() => line.Next("Your tax is 0"));
                 break;
         }
 
