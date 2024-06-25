@@ -28,21 +28,74 @@ Do you trust my code? (Don't worry, it's not a virus. It's just *incredibly* use
 
 ### Context Diagram
 ```mermaid
-flowchart TD
-    A[User] -- Input --> B((Multi))
-    B -- Spell ID --> C[Magic Wizard]
-    C -- Result --> B
-    B -- Output --> A
+flowchart LR
+    A[User]
+    B((Multi))
+    C[Magic Wizard]
+
+    A -- Input --> B -- Output --> A
+    B -- Spell ID --> C Result --> B
 ```
 
 ### Social and Ethical Issues
+- No copyright issues :)
+- No stealing from places :)
+- Ergonomic and intuitive :)
+- I think AI write 95% of the code :(
 
 ### Data Flow Diagram
+```mermaid
+flowchart LR
+    A[User]
+    B((Process Input))
+    C((Validate Input))
+    D((Run Algorithm))
+    E((Navigate))
+    G[Magic Wizard]
 
-### Desk Check
+    A -- Data --> B -- Result --> A
+    B -- Input --> C -- Number or error --> B
+    B -- Option --> E -- New Display --> B
+    B -- Data --> D -- Result --> B
+    D -- ??? --> G -- ??? --> D
+```
+
+### Version control
+```mermaid
+%%{init: { 'gitGraph': {'mainBranchName': 'Nounontoi', 'showCommitLabel':false}} }%%
+gitGraph
+    commit
+    branch TitanPlayz
+    checkout TitanPlayz
+    commit
+    commit
+    checkout Nounontoi
+    merge TitanPlayz
+    checkout TitanPlayz
+    commit
+    commit
+    checkout Nounontoi
+    merge TitanPlayz
+    checkout TitanPlayz
+    commit
+    commit
+    checkout Nounontoi
+    merge TitanPlayz
+```
+
+### Developer Wellbeing
+```mermaid
+pie title Insanity
+    "Lost it" : 90
+    "Coping" : 8
+    "Sane" : 2
+```
 
 ### User Guide
+<- TODO ->
 
 #### Minimum hardware requirements
+Windows 12 or Arch Linux (no mac, ios, android, smart fridge, etc...)
 
 ### Quality Assurance
+<- TODO ->
