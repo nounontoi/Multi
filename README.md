@@ -22,3 +22,80 @@ Do you trust my code? (Don't worry, it's not a virus. It's just *incredibly* use
 1. Go to project and run `compile.bat`.
 > Alternatively, you can run `.\compile.bat` in your terminal (confirm that you are in the correct directory).
 2. This creates `Multi.exe`.
+
+
+## Project Documentation
+
+### Context Diagram
+```mermaid
+flowchart LR
+    A[User]
+    B((Multi))
+    C[Magic Wizard]
+
+    A -- Input      --> B -- Output --> A
+    B -- Spell ID   --> C -- Result --> B
+```
+
+### Social and Ethical Issues
+- No copyright issues :)
+- No stealing from places :)
+- Ergonomic and intuitive :)
+- I think AI write 95% of the code :(
+
+### Data Flow Diagram
+```mermaid
+flowchart LR
+    A[User]
+    B((Process Input))
+    C((Validate Input))
+    D((Run Algorithm))
+    E((Navigate))
+    G[Magic Wizard]
+
+    A -- Data   --> B -- Result         --> A
+    B -- Input  --> C -- Number or Err  --> B
+    B -- Option --> E -- New Display    --> B
+    B -- Data   --> D -- Result         --> B
+    D -- ???    --> G -- ???            --> D
+```
+
+### Version control
+```mermaid
+%%{init: { 'gitGraph': {'mainBranchName': 'Nounontoi', 'showCommitLabel':false}} }%%
+gitGraph
+    commit
+    branch TitanPlayz
+    checkout TitanPlayz
+    commit
+    commit
+    checkout Nounontoi
+    merge TitanPlayz
+    checkout TitanPlayz
+    commit
+    commit
+    checkout Nounontoi
+    merge TitanPlayz
+    checkout TitanPlayz
+    commit
+    commit
+    checkout Nounontoi
+    merge TitanPlayz
+```
+
+### Developer Wellbeing
+```mermaid
+pie title Insanity
+    "Lost it" : 90
+    "Coping" : 8
+    "Sane" : 2
+```
+
+### User Guide
+<- TODO ->
+
+#### Minimum hardware requirements
+Windows 12 or Arch Linux (no mac, ios, android, smart fridge, etc...)
+
+### Quality Assurance
+<- TODO ->
