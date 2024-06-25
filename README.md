@@ -33,8 +33,8 @@ flowchart LR
     B((Multi))
     C[Magic Wizard]
 
-    A -- Input --> B -- Output --> A
-    B -- Spell ID --> C Result --> B
+    A -- Input      --> B -- Output --> A
+    B -- Spell ID   --> C -- Result --> B
 ```
 
 ### Social and Ethical Issues
@@ -53,11 +53,11 @@ flowchart LR
     E((Navigate))
     G[Magic Wizard]
 
-    A -- Data --> B -- Result --> A
-    B -- Input --> C -- Number or error --> B
-    B -- Option --> E -- New Display --> B
-    B -- Data --> D -- Result --> B
-    D -- ??? --> G -- ??? --> D
+    A -- Data   --> B -- Result         --> A
+    B -- Input  --> C -- Number or Err  --> B
+    B -- Option --> E -- New Display    --> B
+    B -- Data   --> D -- Result         --> B
+    D -- ???    --> G -- ???            --> D
 ```
 
 ### Version control
