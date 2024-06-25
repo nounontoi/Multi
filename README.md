@@ -22,3 +22,27 @@ Do you trust my code? (Don't worry, it's not a virus. It's just *incredibly* use
 1. Go to project and run `compile.bat`.
 > Alternatively, you can run `.\compile.bat` in your terminal (confirm that you are in the correct directory).
 2. This creates `Multi.exe`.
+
+
+## Project Documentation
+
+### Context Diagram
+```mermaid
+flowchart TD
+    A[User] -- Input --> B((Multi))
+    B -- Spell ID --> C[Magic Wizard]
+    C -- Result --> B
+    B -- Output --> A
+```
+
+### Social and Ethical Issues
+
+### Data Flow Diagram
+
+### Desk Check
+
+### User Guide
+
+#### Minimum hardware requirements
+
+### Quality Assurance
