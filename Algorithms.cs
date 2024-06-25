@@ -15,6 +15,7 @@ public class Algorithms
         LinearSort,
         BMI,
         TaxCalc,
+        ATARCalc,
         Error = int.MinValue
     }
 
@@ -25,8 +26,8 @@ public class Algorithms
         "[2] O(1) Sorting Algorithm",
         "[3] Linear sort",
         "[4] BMI Calculator",
-        "[5] Tax Calculator"
-
+        "[5] Tax Calculator",
+        "[6] ATAR Calculator"
     };
 
     public static void SearchPage()
@@ -108,6 +109,11 @@ public class Algorithms
                 line.Next("Enter income: ");
                 int income = line.Get();
                 line.Err(() => line.Next("Your tax is 0"));
+                break;
+            case Option.ATARCalc:
+                line.Next("Enter your rank: ");
+                int atar = line.Get();
+                line.Err(() => line.Next("Your estimated ATAR is ? mark"));
                 break;
         }
 
