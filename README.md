@@ -62,29 +62,30 @@ flowchart LR
 
 ### Version control
 ```mermaid
-%%{init: { 'gitGraph': {'mainBranchName': 'Nounontoi', 'showCommitLabel':false}} }%%
+%%{init: { 'gitGraph': {'mainBranchName': 'nounontoi', 'showCommitLabel':false}} }%%
 gitGraph
     commit
     branch TitanPlayz
     checkout TitanPlayz
     commit
     commit
-    checkout Nounontoi
+    checkout nounontoi
     merge TitanPlayz
     checkout TitanPlayz
     commit
     commit
-    checkout Nounontoi
+    checkout nounontoi
     merge TitanPlayz
     checkout TitanPlayz
     commit
     commit
-    checkout Nounontoi
+    checkout nounontoi
     merge TitanPlayz
 ```
 
 ### Developer Wellbeing
 ```mermaid
+%%{init: {'themeVariables': { 'pie1': '#A00000', 'pie2': '#FFFF00', 'pie3': '#00FF00'}}}%%
 pie title Insanity
     "Lost it" : 90
     "Coping" : 8
@@ -92,10 +93,53 @@ pie title Insanity
 ```
 
 ### User Guide
-<- TODO ->
+> To make room for the program, the user may choose to remove System32 from their computer.
+1. If the user is running a Samsung 651L Family Hub™ Smart Refrigerator, they must first obtain a Windows 12 or Arch Linux computer through ethical or unethical means.
 
 #### Minimum hardware requirements
-Windows 12 or Arch Linux (no mac, ios, android, smart fridge, etc...)
+Windows 12 or Arch Linux (no Mac, iOS, Android, Samsung 651L Family Hub™ Smart Refrigerator, etc...).
 
 ### Quality Assurance
-<- TODO ->
+Correctness: Does it do what it is supposed to do?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Reliability: Does it do it all of the time?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Efficiency: Does it do it the best way possible?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Integrity: Is it secure?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Useability: Is it designed for the end user?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Maintainability: Can it be understood?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Flexibility: Can it be modified?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Testability: Can it be tested?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Portability: Will it work with other hardware?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Re-useability: Can parts of it be used in another project?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
+
+Interoperability: Will it work with other software?
+
+![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
