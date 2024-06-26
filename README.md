@@ -24,9 +24,11 @@ Do you trust my code? (Don't worry, it's not a virus. It's just *incredibly* use
 2. This creates `Multi.exe`.
 
 
-## Project Documentation
+## Documentation
 
-### Context Diagram
+### Developer Documentation
+
+#### Context Diagram
 ```mermaid
 flowchart LR
     A[User]
@@ -37,13 +39,13 @@ flowchart LR
     B -- Spell ID   --> C -- Result --> B
 ```
 
-### Social and Ethical Issues
+#### Social and Ethical Issues
 - No copyright issues :)
 - No stealing from places :)
 - Ergonomic and intuitive :)
 - I think AI write 95% of the code :(
 
-### Data Flow Diagram
+#### Data Flow Diagram
 ```mermaid
 flowchart LR
     A[User]
@@ -60,7 +62,7 @@ flowchart LR
     D -- ???    --> G -- ???            --> D
 ```
 
-### Version control
+#### Version control
 ```mermaid
 %%{init: { 'gitGraph': {'mainBranchName': 'nounontoi', 'showCommitLabel':false}} }%%
 gitGraph
@@ -83,7 +85,7 @@ gitGraph
     merge TitanPlayz
 ```
 
-### Developer Wellbeing
+#### Developer Wellbeing
 ```mermaid
 %%{init: {'themeVariables': { 'pie1': '#A00000', 'pie2': '#FFFF00', 'pie3': '#00FF00'}}}%%
 pie title Insanity
@@ -92,14 +94,16 @@ pie title Insanity
     "Sane" : 2
 ```
 
-### User Guide
-> To make room for the program, the user may choose to remove System32 from their computer.
-1. If the user is running a Samsung 651L Family Hub™ Smart Refrigerator, they must first obtain a Windows 12 or Arch Linux computer through ethical or unethical means.
+### User Documentation
 
 #### Minimum hardware requirements
 Windows 12 or Arch Linux (no Mac, iOS, Android, Samsung 651L Family Hub™ Smart Refrigerator, etc...).
 
-### Quality Assurance
+#### Installation Guide
+> To make room for the program, the user may choose to remove System32 from their computer.
+1. If the user is running a Samsung 651L Family Hub™ Smart Refrigerator, they must first obtain a Windows 12 or Arch Linux computer through ethical or unethical means.
+
+#### Quality Assurance
 Correctness: Does it do what it is supposed to do?
 
 ![thumbs up small](https://github.com/nounontoi/Multi/assets/110803721/efdec3a5-6384-469b-9ed0-2f65abc9a246)
